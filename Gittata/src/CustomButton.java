@@ -22,8 +22,8 @@ public class CustomButton extends BasicButtonUI{
     int decorationIsets = 8, circleDiameter = 8, lineWeight = circleDiameter / 3;
 
     @Override
-    public void paint(Graphics g, JComponent c) {
-        Graphics2D g2 = (Graphics2D)g;
+    public void paint(Graphics graphics, JComponent component) {
+        Graphics2D graphics2 = (Graphics2D)graphics;
         
         RenderingHints qualityHints = new RenderingHints(
                 RenderingHints.KEY_ANTIALIASING,
@@ -31,7 +31,7 @@ public class CustomButton extends BasicButtonUI{
         qualityHints.put(
                 RenderingHints.KEY_RENDERING,
                 RenderingHints.VALUE_RENDER_QUALITY);
-        g2.setRenderingHints(qualityHints);
+        graphics2.setRenderingHints(qualityHints);
         
         //Drawing background
         if (animationIndex != target){
@@ -44,74 +44,74 @@ public class CustomButton extends BasicButtonUI{
         
         if (target == 0 && animationIndex == target){
             //g2.setColor(c.getBackground());
-            g2.setPaint(new GradientPaint(
-                c.getWidth() / 2,
+            graphics2.setPaint(new GradientPaint(
+                component.getWidth() / 2,
                 0,
-                c.getBackground(),
-                c.getWidth() / 2,
-                c.getHeight(),
+                component.getBackground(),
+                component.getWidth() / 2,
+                component.getHeight(),
                 new Color(70, 70, 70)
             ));
-        } else if (c.hasFocus()/*&& animationIndex == target && target != 0*/) {
-            g2.setColor(new Color(
+        } else if (component.hasFocus()/*&& animationIndex == target && target != 0*/) {
+            graphics2.setColor(new Color(
                     animationIndex * (200 / numberOfFrames),
                     animationIndex * (200 / numberOfFrames),
                     animationIndex * (200 / numberOfFrames)));
         }
         
-        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 8, 8);
+        graphics2.fillRoundRect(0, 0, component.getWidth(), component.getHeight(), 8, 8);
         
         //Decorations
-        g2.setColor(c.getForeground());
+        graphics2.setColor(component.getForeground());
         
-        g2.fillOval( //Left-Up corner
+        graphics2.fillOval( //Left-Up corner
                 decorationIsets - circleDiameter / 2,
                 decorationIsets - circleDiameter / 2,
                 circleDiameter,
                 circleDiameter); 
         
-        g2.fillOval( //Left-Down corner
+        graphics2.fillOval( //Left-Down corner
                 decorationIsets - circleDiameter / 2,
-                c.getHeight() - decorationIsets - circleDiameter / 2,
+                component.getHeight() - decorationIsets - circleDiameter / 2,
                 circleDiameter,
                 circleDiameter);
         
-        g2.fillOval( //Right-Up corner
-                c.getWidth() - decorationIsets - circleDiameter / 2,
+        graphics2.fillOval( //Right-Up corner
+                component.getWidth() - decorationIsets - circleDiameter / 2,
                 decorationIsets - circleDiameter / 2,
                 circleDiameter,
                 circleDiameter);
         
-        g2.fillOval( //Right-Down corner
-                c.getWidth() - decorationIsets - circleDiameter / 2,
-                c.getHeight() - decorationIsets - circleDiameter / 2,
+        graphics2.fillOval( //Right-Down corner
+                component.getWidth() - decorationIsets - circleDiameter / 2,
+                component.getHeight() - decorationIsets - circleDiameter / 2,
                 circleDiameter,
                 circleDiameter);
     
-        g2.fillRect( //Up line
+        graphics2.fillRect( //Up line
                 decorationIsets,
                 decorationIsets - lineWeight / 2,
-                c.getWidth() - decorationIsets * 2,
+                component.getWidth() - decorationIsets * 2,
                 lineWeight);
         
-        g2.fillRect( //Down line
+        graphics2.fillRect( //Down line
                 decorationIsets,
-                c.getHeight() - decorationIsets - lineWeight / 2,
-                c.getWidth() - decorationIsets * 2,
+                component.getHeight() - decorationIsets - lineWeight / 2,
+                component.getWidth() - decorationIsets * 2,
                 lineWeight);
         
-        g2.fillRect( //Right line
+        graphics2.fillRect( //Right line
                 decorationIsets - lineWeight / 2,
                 decorationIsets,
                 lineWeight,
-                c.getHeight() - decorationIsets * 2);
+                component.getHeight() - decorationIsets * 2);
         
-        g2.fillRect( //Left line
-                c.getWidth() - decorationIsets - lineWeight / 2,
+        graphics2.fillRect( //Left line
+                component.getWidth() - decorationIsets - lineWeight / 2,
                 decorationIsets,
                 lineWeight,
-                c.getHeight() - decorationIsets * 2);
+                component.getHeight() - decorationIsets * 2);
         
-        super.paint(g, c);
+        super.paint(graphics, component);
     }
 }
